@@ -10,9 +10,15 @@ pipeline {
       }
     }
     
-    stage('Run Docker Compose') {
+    stage('Docker Push') {
+      agent any
       steps {
-        sh 'docker-compose build'
+        withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', 
+                                                usernameVariable: 'USER', 
+                                                passwordVariable: 'PASSWORD')]) {
+          sh "docker login -u $USER -p $PASSWORD"
+          sh 'docker push carrcarr07/nodejs-example:latest'
+        }
       }
     }
   }

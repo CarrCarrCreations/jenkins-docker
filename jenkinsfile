@@ -9,9 +9,9 @@ pipeline {
         git 'https://github.com/CarrCarrCreations/mern.git'
       }
     }
-
-    stage('docker compose build'){
-      steps{
+    
+    stage('Run Docker Compose') {
+      steps {
         sh 'docker-compose build'
       }
     }

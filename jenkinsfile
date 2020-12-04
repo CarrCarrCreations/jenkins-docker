@@ -9,6 +9,12 @@ pipeline {
         git 'https://github.com/CarrCarrCreations/mern.git'
       }
     }
+
+    stage('docker compose build'){
+      steps{
+        sh 'docker-compose build'
+      }
+    }
     
     stage('Docker Push') {
       agent any
